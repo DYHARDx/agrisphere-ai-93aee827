@@ -1,46 +1,54 @@
 import { motion } from "framer-motion";
-import { Sprout, Brain, MapPin, TrendingUp, Users, Shield, ArrowRight, Satellite, Cloud, Zap } from "lucide-react";
+import { Brain, MapPin, TrendingUp, Users, Shield, ArrowRight, Satellite, Cloud, Zap, Activity, ShoppingBag, Map } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import AIChat from "@/components/AIChat";
 
 const Index = () => {
+
   const features = [
     {
       icon: Brain,
-      title: "AI Crop Diagnosis",
-      description: "Advanced ML models detect diseases, pests, and nutrient deficiencies in real-time",
+      title: "AI Multi-Class Disease Detection",
+      description: "Advanced ML models analyze leaf, stem, fruit & soil images to detect diseases, pests, nutrient deficiency, and fungal infections with 95% accuracy",
       gradient: "from-primary to-primary-glow",
+      details: ["Pest Detection", "Nutrient Deficiency", "Fungal Infections", "Soil Texture Analysis"]
     },
     {
       icon: MapPin,
-      title: "GIS Field Mapping",
-      description: "Digital twin technology with polygon field mapping and multi-layer visualization",
+      title: "GIS Smart Farm Digital Twin",
+      description: "Complete digital twin with field boundaries, soil zones, irrigation mapping, pest-prone areas, and crop growth stage tracking",
       gradient: "from-accent to-accent-glow",
+      details: ["Field Boundaries", "Soil Zones", "Irrigation Zones", "Growth Stages"]
     },
     {
       icon: TrendingUp,
-      title: "Yield Prediction",
-      description: "Data-driven forecasting helps optimize production and maximize profitability",
+      title: "AI Yield Prediction Engine",
+      description: "Predict crop yields using weather, rainfall, soil type, and historical data with Random Forest, LSTM & Gradient Boosting models",
       gradient: "from-secondary to-secondary-glow",
+      details: ["Weather Analysis", "Soil Type Mapping", "Historical Data", "ML Forecasting"]
     },
     {
       icon: Satellite,
-      title: "IoT Sensors",
-      description: "Real-time monitoring of soil moisture, pH, temperature, and environmental factors",
+      title: "IoT Soil Monitoring",
+      description: "Real-time monitoring of soil moisture, pH, temperature with Firebase integration and AI-powered irrigation suggestions",
       gradient: "from-primary to-accent",
+      details: ["Soil Moisture", "pH Monitoring", "Temperature", "Smart Irrigation"]
     },
     {
       icon: Cloud,
-      title: "Weather Intelligence",
-      description: "Hyperlocal weather forecasts and climate risk alerts for informed decisions",
+      title: "Weather Risk Engine",
+      description: "Real-time risk detection for floods, drought, heatwaves with SMS & WhatsApp alerts for proactive farm management",
       gradient: "from-accent to-secondary",
+      details: ["Flood Alerts", "Drought Warning", "Heatwave Detection", "SMS Alerts"]
     },
     {
       icon: Zap,
-      title: "Smart Recommendations",
-      description: "Precision irrigation, fertilizer optimization, and automated scheduling",
+      title: "Fertilizer & Irrigation AI",
+      description: "ML-powered NPK requirement calculation, water prediction, and smart irrigation scheduling for optimal crop nutrition",
       gradient: "from-secondary to-primary",
+      details: ["NPK Analysis", "Water Prediction", "Smart Scheduling", "Nutrition Optimization"]
     },
   ];
 
@@ -75,22 +83,30 @@ const Index = () => {
             transition={{ type: "spring", stiffness: 400 }}
           >
             <div className="w-10 h-10 bg-gradient-primary rounded-xl flex items-center justify-center shadow-glow-primary">
-              <Sprout className="w-6 h-6 text-primary-foreground" />
+              <span className="text-2xl">🌱</span>
             </div>
             <span className="text-2xl font-bold gradient-text">AgriSphere AI</span>
           </motion.div>
           
           <nav className="hidden md:flex items-center gap-6">
-            {["Features", "Solutions", "Marketplace", "Community"].map((item, i) => (
+            {[
+              { name: "Disease Detection", path: "/disease-detection" },
+              { name: "Digital Twin", path: "/digital-twin" },
+              { name: "Yield Prediction", path: "/yield-prediction" },
+              { name: "IoT Monitoring", path: "/iot-monitoring" },
+              { name: "Marketplace", path: "/marketplace" },
+              { name: "Voice Assistant", path: "/voice-assistant" },
+              { name: "Dashboard", path: "/comprehensive-dashboard" }
+            ].map((item, i) => (
               <motion.a
-                key={item}
-                href={`#${item.toLowerCase()}`}
+                key={item.name}
+                href={item.path}
                 className="text-foreground/80 hover:text-foreground transition-colors relative group"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
               >
-                {item}
+                {item.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300" />
               </motion.a>
             ))}
@@ -108,7 +124,7 @@ const Index = () => {
           </div>
         </div>
       </motion.header>
-
+      
       {/* Hero Section */}
       <section className="relative z-10 container mx-auto px-4 py-20 md:py-32">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -128,13 +144,14 @@ const Index = () => {
             </motion.div>
             
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              <span className="block">Transform Your</span>
-              <span className="block gradient-text">Farm with AI</span>
+              <span className="block">India's First</span>
+              <span className="block gradient-text">AI + GIS Smart Farming</span>
+              <span className="block">Intelligence Platform</span>
             </h1>
             
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-              Harness the power of Artificial Intelligence and GIS technology to maximize yields, 
-              reduce costs, and make data-driven decisions for sustainable farming.
+              Complete seed-to-market intelligence with multi-class disease detection, digital twin mapping, 
+              yield prediction, IoT monitoring, and rural-accessible technology. Increase yields by 30%, reduce costs by 40%.
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -174,7 +191,7 @@ const Index = () => {
             <div className="relative w-full aspect-square">
               {/* Central Core */}
               <motion.div
-                className="absolute inset-0 m-auto w-48 h-48 bg-gradient-primary rounded-full shadow-glow-primary"
+                className="absolute inset-0 m-auto w-48 h-48 bg-gradient-primary rounded-full shadow-glow-primary flex items-center justify-center"
                 animate={{
                   scale: [1, 1.1, 1],
                   rotate: [0, 180, 360],
@@ -184,7 +201,9 @@ const Index = () => {
                   repeat: Infinity,
                   ease: "linear",
                 }}
-              />
+              >
+                <span className="text-6xl">🌱</span>
+              </motion.div>
 
               {/* Orbiting Icons */}
               {[Brain, MapPin, Satellite, TrendingUp, Cloud, Zap].map((Icon, i) => (
@@ -207,6 +226,9 @@ const Index = () => {
                       duration: 3,
                       repeat: Infinity,
                       delay: i * 0.3,
+                    }}
+                    style={{
+                      transformOrigin: '50% 250px',
                     }}
                   >
                     <Icon className="w-8 h-8 text-primary" />
@@ -231,9 +253,17 @@ const Index = () => {
             Intelligent Features for
             <span className="block gradient-text">Modern Farming</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
             Cutting-edge technology designed to revolutionize every aspect of your agricultural operations
           </p>
+          <div className="max-w-4xl mx-auto text-left space-y-4 mt-8 p-6 bg-card/50 backdrop-blur-sm rounded-2xl border border-border/50">
+            <p className="text-muted-foreground">
+              AgriSphere AI is India's first comprehensive AI + GIS Smart Farming Intelligence Platform. We combine multi-class disease detection, digital twin technology, yield prediction, IoT monitoring, and end-to-end agricultural advisory to transform farming from seed to market.
+            </p>
+            <p className="text-muted-foreground">
+              Our platform supports offline mode for villages, Hindi voice commands, government scheme recommendations, farmer-buyer marketplace, and blockchain traceability. From small family farms to large commercial operations, we provide rural-accessible technology that increases yields by 30% while reducing costs by 40%.
+            </p>
+          </div>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -261,21 +291,385 @@ const Index = () => {
                     {feature.title}
                   </h3>
                   
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed mb-4">
                     {feature.description}
                   </p>
+                  
+                  {feature.details && (
+                    <div className="grid grid-cols-2 gap-2 mb-4">
+                      {feature.details.map((detail, idx) => (
+                        <div key={idx} className="text-xs bg-primary/10 px-2 py-1 rounded-full text-primary font-medium">
+                          {detail}
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </motion.div>
 
-                <motion.div
+                <motion.a
+                  href={`/${feature.title.toLowerCase().replace(/\s+/g, '-').replace('ai-', '').replace('gis-', 'digital-').replace('multi-class-', '')}`}
                   className="mt-4 flex items-center text-primary font-medium opacity-0 group-hover:opacity-100 transition-all duration-300"
                   initial={{ x: -10 }}
                   whileHover={{ x: 0 }}
                 >
                   Learn more <ArrowRight className="ml-2 w-4 h-4" />
-                </motion.div>
+                </motion.a>
               </Card>
             </motion.div>
           ))}
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section id="how-it-works" className="py-20 px-4">
+        <div className="container mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">How It Works</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Get started in minutes with our simple 4-step process
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+            {[
+              { step: "1", title: "Sign Up", desc: "Create your account with Google or phone", icon: Users },
+              { step: "2", title: "Map Your Field", desc: "Draw your field boundaries on our interactive map", icon: Map },
+              { step: "3", title: "Get AI Insights", desc: "Upload crop images for instant disease diagnosis", icon: Brain },
+              { step: "4", title: "Take Action", desc: "Follow recommendations to maximize yields", icon: TrendingUp }
+            ].map((item, i) => (
+              <div key={i} className="relative">
+                <div className="group relative card-gradient p-6 rounded-2xl text-center border-2 border-primary/30 transition-all duration-500 hover:scale-[1.02] overflow-hidden">
+                  {/* Animated Border */}
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary via-accent to-secondary opacity-50 animate-spin" style={{ animationDuration: '3.5s' }}></div>
+                  <div className="absolute inset-[2px] rounded-2xl bg-card"></div>
+                  
+                  {/* Bloom Effect on Hover */}
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/20 via-accent/20 to-secondary/20 opacity-0 group-hover:opacity-100 blur-xl transition-all duration-700"></div>
+                  
+                  <div className="relative z-10">
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-2xl font-bold text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      {item.step}
+                    </div>
+                    <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{item.title}</h3>
+                    <p className="text-muted-foreground text-sm group-hover:text-foreground/80 transition-colors">{item.desc}</p>
+                  </div>
+                </div>
+                {i < 3 && (
+                  <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-primary to-accent opacity-60" />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Advanced AI Features Section */}
+      <section id="ai-features" className="py-20 px-4 bg-muted/30">
+        <div className="container mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Advanced AI Intelligence</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Cutting-edge features that set AgriSphere AI apart
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {[
+              { 
+                title: "Pest Attack Prediction", 
+                desc: "AI forecasts pest attack probability (0-100%) using climate, humidity & historical patterns for next 7 days",
+                icon: "🐛",
+                features: ["Climate Analysis", "7-Day Risk Forecast", "Prevention Alerts", "Treatment Recommendations"]
+              },
+              { 
+                title: "Seed-to-Market Advisory", 
+                desc: "Complete guidance from seed selection to market pricing with harvest time prediction & mandi recommendations",
+                icon: "🌾",
+                features: ["Seed Selection", "Sowing Time", "Harvest Prediction", "Market Pricing"]
+              },
+              { 
+                title: "Voice Assistant (Hindi)", 
+                desc: "Farmers speak: 'Gehun mein rog a gaya hai' - AI responds with disease type, action & cost in local language",
+                icon: "🎤",
+                features: ["Hindi Support", "Voice Recognition", "Local Languages", "Audio Responses"]
+              },
+              { 
+                title: "Government Schemes AI", 
+                desc: "Auto-identifies subsidies, loans, crop insurance & PM-KISAN benefits based on farmer profile & location",
+                icon: "🏛️",
+                features: ["Subsidy Matching", "Loan Eligibility", "Insurance Plans", "PM-KISAN"]
+              },
+              { 
+                title: "Farmer-Buyer Marketplace", 
+                desc: "Direct selling platform with AI pricing, logistics suggestions to increase rural income & eliminate middlemen",
+                icon: "🛒",
+                features: ["Direct Selling", "AI Pricing", "Logistics", "Income Boost"]
+              },
+              { 
+                title: "Blockchain Traceability", 
+                desc: "Track crop origin, supply chain & authenticity using blockchain for premium quality assurance",
+                icon: "⛓️",
+                features: ["Origin Tracking", "Supply Chain", "Authenticity", "Quality Assurance"]
+              }
+            ].map((feature, i) => (
+              <div key={i} className="group relative card-gradient p-8 rounded-2xl border-2 border-primary/30 transition-all duration-500 hover:scale-[1.02] overflow-hidden">
+                {/* Animated Border */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary via-accent to-secondary opacity-50 animate-spin" style={{ animationDuration: `${3 + i * 0.5}s` }}></div>
+                <div className="absolute inset-[2px] rounded-2xl bg-card"></div>
+                
+                {/* Bloom Effect on Hover */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/20 via-accent/20 to-secondary/20 opacity-0 group-hover:opacity-100 blur-xl transition-all duration-700"></div>
+                
+                <div className="relative z-10">
+                  <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">{feature.icon}</div>
+                  <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">{feature.title}</h3>
+                  <p className="text-muted-foreground mb-4 group-hover:text-foreground/80 transition-colors">{feature.desc}</p>
+                  <div className="grid grid-cols-2 gap-2">
+                    {feature.features.map((item, idx) => (
+                      <div key={idx} className="text-xs bg-primary/10 px-2 py-1 rounded-full text-primary font-medium">
+                        {item}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Rural Accessibility Section */}
+      <section id="rural-features" className="py-20 px-4">
+        <div className="container mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Built for Rural India</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Accessible technology designed for village farmers
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+            {[
+              { 
+                title: "Offline Mode", 
+                desc: "Works without internet with local caching for critical farming information",
+                icon: "📱"
+              },
+              { 
+                title: "Hindi + Local Languages", 
+                desc: "Full support for Hindi and regional languages with voice commands",
+                icon: "🗣️"
+              },
+              { 
+                title: "SMS Fallback Alerts", 
+                desc: "Critical alerts sent via SMS when internet is unavailable",
+                icon: "📨"
+              },
+              { 
+                title: "Community Forums", 
+                desc: "Farmers discuss pests, diseases, schemes with AI moderation",
+                icon: "👥"
+              }
+            ].map((feature, i) => (
+              <div key={i} className="group relative text-center p-6 card-gradient rounded-xl border-2 border-primary/30 transition-all duration-300 hover:scale-105 overflow-hidden">
+                {/* Animated Border */}
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary via-accent to-secondary opacity-50 animate-spin" style={{ animationDuration: '2.5s' }}></div>
+                <div className="absolute inset-[2px] rounded-xl bg-card"></div>
+                
+                {/* Bloom Effect on Hover */}
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/20 via-accent/20 to-secondary/20 opacity-0 group-hover:opacity-100 blur-lg transition-all duration-700"></div>
+                
+                <div className="relative z-10">
+                  <div className="text-3xl mb-4 group-hover:scale-110 transition-transform duration-300">{feature.icon}</div>
+                  <h3 className="font-bold mb-2 group-hover:text-primary transition-colors">{feature.title}</h3>
+                  <p className="text-sm text-muted-foreground group-hover:text-foreground/80 transition-colors">{feature.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Women Empowerment Section */}
+      <section id="women-empowerment" className="py-20 px-4 bg-muted/30">
+        <div className="container mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Rural Women Agri-Entrepreneur</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Empowering women-led microbusinesses in agriculture
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {[
+              { 
+                title: "Microbusiness Support", 
+                desc: "Training and support for honey, spices, pickles, and handicraft businesses",
+                icon: "🍯"
+              },
+              { 
+                title: "Training Modules", 
+                desc: "Comprehensive training programs for women entrepreneurs in rural areas",
+                icon: "📚"
+              },
+              { 
+                title: "Marketplace Access", 
+                desc: "Direct marketplace listings for women-led agricultural products",
+                icon: "🛍️"
+              }
+            ].map((feature, i) => (
+              <div key={i} className="group relative card-gradient p-8 rounded-2xl border-2 border-primary/30 transition-all duration-500 hover:scale-[1.02] overflow-hidden">
+                {/* Animated Border */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary via-accent to-secondary opacity-50 animate-spin" style={{ animationDuration: '3.5s' }}></div>
+                <div className="absolute inset-[2px] rounded-2xl bg-card"></div>
+                
+                {/* Bloom Effect on Hover */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/20 via-accent/20 to-secondary/20 opacity-0 group-hover:opacity-100 blur-xl transition-all duration-700"></div>
+                
+                <div className="relative z-10">
+                  <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">{feature.icon}</div>
+                  <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">{feature.title}</h3>
+                  <p className="text-muted-foreground group-hover:text-foreground/80 transition-colors">{feature.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section id="testimonials" className="py-20 px-4">
+        <div className="container mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">What Farmers Say</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Real stories from farmers transforming their operations
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {[
+              {
+                name: "Rajesh Kumar",
+                location: "Punjab, India",
+                text: "AgriSphere's multi-class AI detected stem borer in my wheat early. The pest prediction saved my entire 10-acre crop and increased yield by 35%!",
+                rating: 5,
+                crop: "Wheat",
+                benefit: "35% yield increase"
+              },
+              {
+                name: "Anita Sharma",
+                location: "Maharashtra, India",
+                text: "The GIS digital twin mapped my field perfectly. IoT sensors + smart irrigation cut water usage by 45%. Marketplace got me ₹2000/quintal extra!",
+                rating: 5,
+                crop: "Cotton",
+                benefit: "45% water savings"
+              },
+              {
+                name: "Vikram Patel",
+                location: "Gujarat, India",
+                text: "Voice assistant in Hindi is amazing! 'Tamatar mein rog hai' - instantly got disease type, treatment cost. Offline mode works perfectly in my village.",
+                rating: 5,
+                crop: "Tomato",
+                benefit: "Hindi voice support"
+              },
+              {
+                name: "Priya Devi",
+                location: "Bihar, India",
+                text: "Women entrepreneur module helped me start honey business. Training + marketplace access increased my income by ₹15,000/month!",
+                rating: 5,
+                crop: "Honey",
+                benefit: "₹15k extra income"
+              },
+              {
+                name: "Suresh Reddy",
+                location: "Telangana, India",
+                text: "Yield prediction was 98% accurate! Government scheme AI found ₹50,000 subsidy I didn't know about. Blockchain traceability got premium prices.",
+                rating: 5,
+                crop: "Rice",
+                benefit: "₹50k subsidy found"
+              },
+              {
+                name: "Kavita Singh",
+                location: "Uttar Pradesh, India",
+                text: "Pest attack prediction warned me 5 days early about aphid attack. Weather risk alerts saved my crop from unexpected hailstorm damage.",
+                rating: 5,
+                crop: "Mustard",
+                benefit: "Early pest warning"
+              }
+            ].map((testimonial, i) => (
+              <div key={i} className="group relative card-gradient p-8 rounded-2xl border-2 border-primary/30 transition-all duration-500 hover:scale-[1.02] overflow-hidden">
+                {/* Animated Border */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary via-accent to-secondary opacity-50 animate-spin" style={{ animationDuration: '4s' }}></div>
+                <div className="absolute inset-[2px] rounded-2xl bg-card"></div>
+                
+                {/* Bloom Effect on Hover */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/20 via-accent/20 to-secondary/20 opacity-0 group-hover:opacity-100 blur-xl transition-all duration-700"></div>
+                
+                <div className="relative z-10">
+                  <div className="flex justify-between items-start mb-4">
+                    <div className="flex gap-1">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <span key={i} className="text-yellow-500 text-xl group-hover:scale-110 transition-transform duration-300">★</span>
+                      ))}
+                    </div>
+                    <div className="text-right">
+                      <div className="text-xs bg-primary/20 px-2 py-1 rounded-full text-primary font-medium mb-1">{testimonial.crop}</div>
+                      <div className="text-xs bg-accent/20 px-2 py-1 rounded-full text-accent font-medium">{testimonial.benefit}</div>
+                    </div>
+                  </div>
+                  <p className="text-muted-foreground mb-6 italic group-hover:text-foreground/80 transition-colors">"{testimonial.text}"</p>
+                  <div>
+                    <p className="font-bold group-hover:text-primary transition-colors">{testimonial.name}</p>
+                    <p className="text-sm text-muted-foreground">{testimonial.location}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Technology Stack Section */}
+      <section className="py-20 px-4 bg-muted/30">
+        <div className="container mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Built on Cutting-Edge Technology</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Enterprise-grade tech stack powering your farm
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
+            {[
+              { name: "Random Forest ML", desc: "Yield prediction" },
+              { name: "LSTM Networks", desc: "Time series analysis" },
+              { name: "Gradient Boosting", desc: "Advanced regression" },
+              { name: "Mapbox GIS", desc: "Digital twin mapping" },
+              { name: "Firebase IoT", desc: "Real-time sensors" },
+              { name: "Multi-class CNN", desc: "Disease detection" },
+              { name: "Blockchain", desc: "Supply traceability" },
+              { name: "Voice Recognition", desc: "Hindi commands" },
+              { name: "Offline Caching", desc: "Village accessibility" },
+              { name: "SMS Gateway", desc: "Alert fallback" },
+              { name: "WhatsApp API", desc: "Instant notifications" },
+              { name: "End-to-End Encryption", desc: "Data security" }
+            ].map((tech, i) => (
+              <div key={i} className="group relative text-center p-6 card-gradient rounded-xl border-2 border-primary/30 transition-all duration-300 hover:scale-105 overflow-hidden">
+                {/* Animated Border */}
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary via-accent to-secondary opacity-50 animate-spin" style={{ animationDuration: '2s' }}></div>
+                <div className="absolute inset-[2px] rounded-xl bg-card"></div>
+                
+                {/* Bloom Effect on Hover */}
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/20 via-accent/20 to-secondary/20 opacity-0 group-hover:opacity-100 blur-lg transition-all duration-700"></div>
+                
+                <div className="relative z-10">
+                  <p className="font-bold mb-2 group-hover:text-primary transition-colors">{tech.name}</p>
+                  <p className="text-sm text-muted-foreground group-hover:text-foreground/80 transition-colors">{tech.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -326,7 +720,7 @@ const Index = () => {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-                  <Sprout className="w-5 h-5 text-primary-foreground" />
+                  <span className="text-lg">🌱</span>
                 </div>
                 <span className="text-xl font-bold gradient-text">AgriSphere AI</span>
               </div>
@@ -336,17 +730,41 @@ const Index = () => {
             </div>
 
             {[
-              { title: "Product", links: ["Features", "Pricing", "Demo", "Documentation"] },
-              { title: "Company", links: ["About", "Blog", "Careers", "Contact"] },
-              { title: "Support", links: ["Help Center", "Community", "Status", "Terms"] },
+              { 
+                title: "Features", 
+                links: [
+                  { name: "Disease Detection", path: "/disease-detection" },
+                  { name: "Digital Twin", path: "/digital-twin" },
+                  { name: "Yield Prediction", path: "/yield-prediction" },
+                  { name: "Voice Assistant", path: "/voice-assistant" }
+                ]
+              },
+              { 
+                title: "Platform", 
+                links: [
+                  { name: "Marketplace", path: "/marketplace" },
+                  { name: "IoT Monitoring", path: "/iot-monitoring" },
+                  { name: "Weather Alerts", path: "#" },
+                  { name: "Community", path: "#" }
+                ]
+              },
+              { 
+                title: "Support", 
+                links: [
+                  { name: "Help Center", path: "#" },
+                  { name: "Documentation", path: "#" },
+                  { name: "API Guide", path: "#" },
+                  { name: "Contact", path: "#" }
+                ]
+              },
             ].map((column) => (
               <div key={column.title}>
                 <h4 className="font-bold mb-4">{column.title}</h4>
                 <ul className="space-y-2">
                   {column.links.map((link) => (
-                    <li key={link}>
-                      <a href="#" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
-                        {link}
+                    <li key={link.name}>
+                      <a href={link.path} className="text-muted-foreground hover:text-foreground transition-colors text-sm">
+                        {link.name}
                       </a>
                     </li>
                   ))}
@@ -374,6 +792,9 @@ const Index = () => {
           </div>
         </div>
       </footer>
+      
+      {/* AI Chatbot */}
+      <AIChat />
     </div>
   );
 };
