@@ -135,19 +135,13 @@ class HighAccuracyPlantDiseaseTrainer:
         print("DATASET LOADING & CLEANING")
         print("=" * 60)
         
-        # Safe dataset cleanup
+        # Check if dataset exists but don't delete it
         if os.path.exists("dataset"):
-            try:
-                shutil.rmtree("dataset")
-            except PermissionError:
-                print("Warning: Could not remove existing dataset folder. Using existing structure.")
-                # Clear existing files instead
-                for root, dirs, files in os.walk("dataset"):
-                    for file in files:
-                        try:
-                            os.remove(os.path.join(root, file))
-                        except:
-                            pass
+            print("Dataset folder already exists. Using existing data to prevent deletion.")
+        else:
+            # Create dataset structure only if it doesn't exist
+            for class_name in ['healthy', 'leaf_blight', 'leaf_rust', 'leaf_spot', 'stem_rot', 'pest_infected', 'nutrient_deficiency']:
+                os.makedirs(f"dataset/{class_name}", exist_ok=True)
         
         # Create dataset structure
         for class_name in ['healthy', 'leaf_blight', 'leaf_rust', 'leaf_spot', 'stem_rot', 'pest_infected', 'nutrient_deficiency']:
